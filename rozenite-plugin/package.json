@@ -2,7 +2,6 @@
   "name": "rozenite-storybook",
   "version": "0.0.1",
   "description": "Storybook Dev Tools for React Native",
-  "private": true,
   "type": "module",
   "main": "./dist/react-native.cjs",
   "module": "./dist/react-native.js",
