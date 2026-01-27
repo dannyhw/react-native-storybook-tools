@@ -34,7 +34,7 @@
   "devDependencies": {
     "@rozenite/metro": "^1.2.0",
     "@types/react": "~19.1.0",
-    "rozenite-storybook": "workspace:*",
+    "@dannyhw/rozenite-storybook": "workspace:*",
     "typescript": "~5.9.2"
   },
   "private": true

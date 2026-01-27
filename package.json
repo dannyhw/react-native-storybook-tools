@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "repo:fix": "sherif --fix -r unsync-similar-dependencies",
-    "build": "bun --filter rozenite-storybook build",
-    "dev": "bun --filter rozenite-storybook dev",
+    "build": "bun --filter @dannyhw/rozenite-storybook build",
+    "dev": "bun --filter @dannyhw/rozenite-storybook dev",
     "example:start": "bun --filter example start",
     "example:android": "bun --filter example android",
     "example:ios": "bun --filter example ios"
