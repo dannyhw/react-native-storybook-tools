@@ -1,0 +1,41 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "storybook-generate": "sb-rn-get-stories"
+  },
+  "dependencies": {
+    "@babel/core": "^7.28.6",
+    "@gorhom/bottom-sheet": "^5.2.8",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-native-community/datetimepicker": "8.4.4",
+    "@react-native-community/slider": "5.0.1",
+    "@storybook/addon-ondevice-actions": "^10.2.0-beta.1",
+    "@storybook/addon-ondevice-controls": "^10.2.0-beta.1",
+    "@storybook/react-native": "^10.2.0-beta.1",
+    "babel-loader": "^8.4.1",
+    "expo": "^54.0.32",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-svg": "15.12.1",
+    "react-native-worklets": "0.5.1",
+    "storybook": "^10.2.0"
+  },
+  "devDependencies": {
+    "@rozenite/metro": "^1.2.0",
+    "@types/react": "~19.1.0",
+    "rozenite-storybook": "workspace:*",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}
