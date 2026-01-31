@@ -6,7 +6,8 @@ To get setup
 npm install -D @dannyhw/rozenite-storybook
 ```
 
-Update to atleast React Native Storybook 10.2
+_Update to atleast React Native Storybook 10.2_
+
 Make sure your storybook is setup for websocket connection.
 
 Firstly in `metro.config.js`
