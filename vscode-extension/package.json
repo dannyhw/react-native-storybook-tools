@@ -14,7 +14,8 @@
     "onView:storybookStories",
     "onCommand:vscodeReactNativeStorybook.refreshIndex",
     "onCommand:vscodeReactNativeStorybook.connect",
-    "onCommand:vscodeReactNativeStorybook.disconnect"
+    "onCommand:vscodeReactNativeStorybook.disconnect",
+    "onCommand:vscodeReactNativeStorybook.openStoryFile"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -34,6 +35,14 @@
       {
         "command": "vscodeReactNativeStorybook.selectStory",
         "title": "Storybook: Select Story"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.openStoryFile",
+        "title": "Storybook: Open Story File",
+        "icon": {
+          "light": "resources/open-file-light.svg",
+          "dark": "resources/open-file-dark.svg"
+        }
       }
     ],
     "viewsContainers": {
@@ -69,6 +78,13 @@
           "command": "vscodeReactNativeStorybook.disconnect",
           "when": "view == storybookStories",
           "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vscodeReactNativeStorybook.openStoryFile",
+          "when": "view == storybookStories && viewItem == story",
+          "group": "inline"
         }
       ]
     },
@@ -110,7 +126,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@storybook/react-native": "^10.1.0",
+    "@storybook/react-native": "^10.2.1",
     "ws": "^8.18.0"
   }
 }

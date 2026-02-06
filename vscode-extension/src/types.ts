@@ -21,6 +21,7 @@ export interface TreeNode {
   depth: number;
   children: TreeNode[];
   storyId?: string;
+  importPath?: string;
 }
 
 export type ConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'error';

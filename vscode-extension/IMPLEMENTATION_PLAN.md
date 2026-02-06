@@ -76,4 +76,6 @@
 ## Backlog (per request)
 - Embedded Storybook preview panel in VS Code (webview).
 - Quick-pick story search command.
-- Open story source file on double-click (jump to location).
+
+## Completed Post-MVP
+- Inline tree action on story items to open the story source file in VS Code.

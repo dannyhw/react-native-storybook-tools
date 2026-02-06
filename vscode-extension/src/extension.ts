@@ -1,7 +1,9 @@
 import * as vscode from 'vscode';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { findConfigDir, getStorybookConfig, resolveConfigPath } from './config';
 import type { StoryIndex } from './types';
-import { StoryTreeProvider } from './storyTreeProvider';
+import { StoryTreeProvider, type ViewNode } from './storyTreeProvider';
 import { findStoryNode } from './tree';
 import { StorybookWebSocketClient } from './wsClient';
 
@@ -103,6 +105,34 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const openStoryFileCommand = vscode.commands.registerCommand(
+    'vscodeReactNativeStorybook.openStoryFile',
+    async (node?: ViewNode | string) => {
+      const storyId = getStoryIdFromCommandArg(node) ?? provider.getSelectedStoryId();
+      if (!storyId) {
+        vscode.window.showWarningMessage('No story selected.');
+        return;
+      }
+
+      const storyEntry = provider.getStoryEntry(storyId);
+      if (!storyEntry?.importPath) {
+        vscode.window.showWarningMessage(`No file path found for story "${storyId}".`);
+        return;
+      }
+
+      const storyFile = await resolveStoryFileUri(storyEntry.importPath);
+      if (!storyFile) {
+        vscode.window.showWarningMessage(
+          `Could not resolve story file for import path "${storyEntry.importPath}".`
+        );
+        return;
+      }
+
+      const doc = await vscode.workspace.openTextDocument(storyFile);
+      await vscode.window.showTextDocument(doc, { preview: false });
+    }
+  );
+
   const configListener = vscode.workspace.onDidChangeConfiguration((event) => {
     if (!event.affectsConfiguration('reactNativeStorybook')) return;
 
@@ -124,6 +154,7 @@ export async function activate(context: vscode.ExtensionContext) {
     connectCommand,
     disconnectCommand,
     selectStoryCommand,
+    openStoryFileCommand,
     configListener
   );
 
@@ -162,4 +193,50 @@ function createWebSocketClient(
     },
     onSelection,
   });
+}
+
+function getStoryIdFromCommandArg(node?: ViewNode | string) {
+  if (typeof node === 'string') {
+    return node;
+  }
+
+  if (node && node.type === 'story' && node.storyId) {
+    return node.storyId;
+  }
+
+  return null;
+}
+
+async function resolveStoryFileUri(importPath: string): Promise<vscode.Uri | null> {
+  const normalizedImportPath = importPath.replace(/\\/g, '/');
+  if (path.isAbsolute(normalizedImportPath) && fs.existsSync(normalizedImportPath)) {
+    return vscode.Uri.file(normalizedImportPath);
+  }
+
+  const relativeImportPath = normalizedImportPath.replace(/^\.\//, '');
+  const folders = vscode.workspace.workspaceFolders ?? [];
+
+  for (const folder of folders) {
+    const candidate = path.resolve(folder.uri.fsPath, relativeImportPath);
+    if (fs.existsSync(candidate)) {
+      return vscode.Uri.file(candidate);
+    }
+  }
+
+  const fileName = path.basename(relativeImportPath);
+  const candidates = await vscode.workspace.findFiles(
+    `**/${fileName}`,
+    '**/{node_modules,.git}/**',
+    200
+  );
+  const suffix = relativeImportPath.startsWith('/') ? relativeImportPath : `/${relativeImportPath}`;
+
+  for (const candidate of candidates) {
+    const fsPath = candidate.fsPath.replace(/\\/g, '/');
+    if (fsPath.endsWith(suffix)) {
+      return candidate;
+    }
+  }
+
+  return candidates[0] ?? null;
 }

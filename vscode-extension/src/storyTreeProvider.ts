@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { StoryIndex, TreeNode } from './types';
+import type { StoryEntry, StoryIndex, TreeNode } from './types';
 import { buildTree } from './tree';
 
 interface MessageNode {
@@ -12,6 +12,7 @@ export type ViewNode = TreeNode | MessageNode;
 
 export class StoryTreeProvider implements vscode.TreeDataProvider<ViewNode> {
   private tree: TreeNode[] = [];
+  private entries = new Map<string, StoryEntry>();
   private message: string | null = null;
   private selectedStoryId: string | null = null;
 
@@ -22,9 +23,11 @@ export class StoryTreeProvider implements vscode.TreeDataProvider<ViewNode> {
 
   setIndex(index: StoryIndex | null) {
     if (index) {
+      this.entries = new Map(Object.entries(index.entries));
       this.tree = buildTree(Object.values(index.entries));
       this.message = null;
     } else {
+      this.entries = new Map();
       this.tree = [];
     }
     this.refresh();
@@ -106,5 +109,9 @@ export class StoryTreeProvider implements vscode.TreeDataProvider<ViewNode> {
 
   getTree() {
     return this.tree;
+  }
+
+  getStoryEntry(storyId: string) {
+    return this.entries.get(storyId);
   }
 }

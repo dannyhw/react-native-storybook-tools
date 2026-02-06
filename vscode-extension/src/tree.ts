@@ -44,6 +44,7 @@ export function buildTree(entries: StoryEntry[]): TreeNode[] {
       depth: pathParts.length,
       children: [],
       storyId: entry.id,
+      importPath: entry.importPath,
     });
   }
 
