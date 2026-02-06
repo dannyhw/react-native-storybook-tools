@@ -15,11 +15,11 @@
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/datetimepicker": "8.4.4",
     "@react-native-community/slider": "5.0.1",
-    "@storybook/addon-ondevice-actions": "^10.2.0-beta.1",
-    "@storybook/addon-ondevice-controls": "^10.2.0-beta.1",
-    "@storybook/react-native": "^10.2.0-beta.1",
+    "@storybook/addon-ondevice-actions": "^10.2.1",
+    "@storybook/addon-ondevice-controls": "^10.2.1",
+    "@storybook/react-native": "^10.2.1",
     "babel-loader": "^8.4.1",
-    "expo": "^54.0.32",
+    "expo": "^54.0.33",
     "expo-status-bar": "~3.0.9",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -32,10 +32,10 @@
     "storybook": "^10.2.0"
   },
   "devDependencies": {
+    "@dannyhw/rozenite-storybook": "workspace:*",
     "@rozenite/metro": "^1.2.0",
     "@types/react": "~19.1.0",
-    "@dannyhw/rozenite-storybook": "workspace:*",
-    "typescript": "~5.9.2"
+    "typescript": "^5.9.3"
   },
   "private": true
 }

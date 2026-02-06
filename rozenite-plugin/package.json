@@ -21,7 +21,7 @@
     "react-native": "0.81.5",
     "react-native-web": "^0.21.2",
     "rozenite": "^1.2.0",
-    "typescript": "~5.9.2",
+    "typescript": "^5.9.3",
     "vite": "^7.3.1"
   },
   "peerDependencies": {
