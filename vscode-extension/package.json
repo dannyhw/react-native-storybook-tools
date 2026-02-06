@@ -16,7 +16,8 @@
     "onCommand:vscodeReactNativeStorybook.refreshIndex",
     "onCommand:vscodeReactNativeStorybook.connect",
     "onCommand:vscodeReactNativeStorybook.disconnect",
-    "onCommand:vscodeReactNativeStorybook.openStoryFile"
+    "onCommand:vscodeReactNativeStorybook.openStoryFile",
+    "onCommand:vscodeReactNativeStorybook.moreActions"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -44,6 +45,14 @@
           "light": "resources/open-file-light.svg",
           "dark": "resources/open-file-dark.svg"
         }
+      },
+      {
+        "command": "vscodeReactNativeStorybook.moreActions",
+        "title": "Storybook: More Actions",
+        "icon": {
+          "light": "resources/more-light.svg",
+          "dark": "resources/more-dark.svg"
+        }
       }
     ],
     "viewsContainers": {
@@ -66,17 +75,7 @@
     "menus": {
       "view/title": [
         {
-          "command": "vscodeReactNativeStorybook.refreshIndex",
-          "when": "view == storybookStories",
-          "group": "navigation"
-        },
-        {
-          "command": "vscodeReactNativeStorybook.connect",
-          "when": "view == storybookStories",
-          "group": "navigation"
-        },
-        {
-          "command": "vscodeReactNativeStorybook.disconnect",
+          "command": "vscodeReactNativeStorybook.moreActions",
           "when": "view == storybookStories",
           "group": "navigation"
         }
