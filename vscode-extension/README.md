@@ -3,7 +3,7 @@
 Browse and control React Native Storybook stories directly in VS Code.
 
 ## Features
-- Tree view of stories (group/component/story).
+- Storybook panel in VS Code Explorer with tree view of stories (group/component/story).
 - Initial story list generated via `@storybook/react-native/node` `buildIndex`.
 - Live selection sync via WebSocket.
 - Inline action on story nodes to open the story source file.
