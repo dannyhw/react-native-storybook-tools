@@ -3,7 +3,7 @@
   "displayName": "React Native Storybook",
   "description": "Browse and control React Native Storybook stories from VS Code.",
   "publisher": "dannyhw",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "icon": "icon.png",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "url": "https://github.com/dannyhw/react-native-storybook-tools/issues"
   },
   "engines": {
-    "vscode": "^1.106.1"
+    "vscode": "^1.105.0"
   },
   "categories": [
     "Other"
@@ -141,16 +141,14 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "package": "bunx @vscode/vsce package --no-dependencies",
-    "publish": "bunx @vscode/vsce publish"
+    "publish": "bunx @vscode/vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@types/node": "22.x",
-    "@types/vscode": "^1.106.1",
-    "@types/ws": "^8.5.10",
+    "@types/vscode": "^1.105.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@storybook/react-native": "^10.2.1",
-    "ws": "^8.18.0"
+    "@storybook/react-native": "^10.2.1"
   }
 }

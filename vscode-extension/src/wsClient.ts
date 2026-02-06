@@ -1,4 +1,3 @@
-import WebSocket from 'ws';
 import type { ConnectionStatus, StoryIndex } from './types';
 
 export interface WebSocketHandlers {
@@ -28,16 +27,27 @@ export class StorybookWebSocketClient {
 
     this.updateStatus('connecting');
 
-    const ws = new WebSocket(`ws://${this.host}:${this.port}`);
+    const WebSocketCtor = globalThis.WebSocket;
+    if (!WebSocketCtor) {
+      this.updateStatus(
+        'error',
+        'WebSocket API is unavailable in this editor runtime. Use a newer editor build.'
+      );
+      return;
+    }
+
+    const ws = new WebSocketCtor(`ws://${this.host}:${this.port}`);
     this.ws = ws;
 
-    ws.on('open', () => {
+    ws.addEventListener('open', () => {
       this.updateStatus('connected');
       this.requestIndex();
     });
 
-    ws.on('message', (data) => {
-      const text = data.toString();
+    ws.addEventListener('message', (event) => {
+      const text = messageDataToString(event.data);
+      if (!text) return;
+
       const parsed = safeJsonParse(text);
       if (!parsed) return;
 
@@ -60,11 +70,11 @@ export class StorybookWebSocketClient {
       }
     });
 
-    ws.on('error', (error) => {
-      this.updateStatus('error', `WebSocket error: ${error instanceof Error ? error.message : error}`);
+    ws.addEventListener('error', () => {
+      this.updateStatus('error', 'WebSocket connection failed.');
     });
 
-    ws.on('close', () => {
+    ws.addEventListener('close', () => {
       if (this.ws === ws) {
         this.ws = null;
         this.updateStatus('disconnected');
@@ -97,7 +107,7 @@ export class StorybookWebSocketClient {
   }
 
   private send(payload: Record<string, unknown>) {
-    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) return;
+    if (!this.ws || this.ws.readyState !== 1) return;
     this.ws.send(JSON.stringify(payload));
   }
 
@@ -113,4 +123,12 @@ function safeJsonParse(value: string): any | null {
   } catch {
     return null;
   }
+}
+
+function messageDataToString(data: unknown): string | null {
+  if (typeof data === 'string') return data;
+  if (data instanceof ArrayBuffer) {
+    return new TextDecoder().decode(data);
+  }
+  return null;
 }

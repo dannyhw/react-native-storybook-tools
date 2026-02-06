@@ -65,14 +65,14 @@
     },
     "vscode-extension": {
       "name": "vscode-react-native-storybook",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "dependencies": {
         "@storybook/react-native": "^10.2.1",
         "ws": "^8.18.0",
       },
       "devDependencies": {
         "@types/node": "22.x",
-        "@types/vscode": "^1.106.1",
+        "@types/vscode": "^1.105.0",
         "@types/ws": "^8.5.10",
         "typescript": "^5.9.3",
       },
