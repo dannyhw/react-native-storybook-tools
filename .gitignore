@@ -16,3 +16,4 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+vscode-extension/out
