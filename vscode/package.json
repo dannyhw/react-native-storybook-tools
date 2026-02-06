@@ -1,0 +1,116 @@
+{
+  "name": "vscode-react-native-storybook",
+  "displayName": "React Native Storybook",
+  "description": "Browse and control React Native Storybook stories from VS Code.",
+  "publisher": "storybook",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.106.1"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:storybookStories",
+    "onCommand:vscodeReactNativeStorybook.refreshIndex",
+    "onCommand:vscodeReactNativeStorybook.connect",
+    "onCommand:vscodeReactNativeStorybook.disconnect"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscodeReactNativeStorybook.refreshIndex",
+        "title": "Storybook: Refresh Stories"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.connect",
+        "title": "Storybook: Connect"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.disconnect",
+        "title": "Storybook: Disconnect"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.selectStory",
+        "title": "Storybook: Select Story"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "storybook",
+          "title": "Storybook",
+          "icon": "resources/storybook.svg"
+        }
+      ]
+    },
+    "views": {
+      "storybook": [
+        {
+          "id": "storybookStories",
+          "name": "Stories"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "vscodeReactNativeStorybook.refreshIndex",
+          "when": "view == storybookStories",
+          "group": "navigation"
+        },
+        {
+          "command": "vscodeReactNativeStorybook.connect",
+          "when": "view == storybookStories",
+          "group": "navigation"
+        },
+        {
+          "command": "vscodeReactNativeStorybook.disconnect",
+          "when": "view == storybookStories",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "React Native Storybook",
+      "properties": {
+        "reactNativeStorybook.host": {
+          "type": "string",
+          "default": "localhost",
+          "description": "Host for the Storybook WebSocket/REST server."
+        },
+        "reactNativeStorybook.port": {
+          "type": "number",
+          "default": 7007,
+          "description": "Port for the Storybook WebSocket/REST server."
+        },
+        "reactNativeStorybook.configPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional path to .rnstorybook directory (absolute or workspace-relative)."
+        },
+        "reactNativeStorybook.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-connect to Storybook WebSocket on activation."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "@types/vscode": "^1.106.1",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@storybook/react-native": "^10.1.0",
+    "ws": "^8.18.0"
+  }
+}
