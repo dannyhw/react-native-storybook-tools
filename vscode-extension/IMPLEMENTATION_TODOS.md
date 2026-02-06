@@ -1,6 +1,6 @@
 # Implementation Todos
 
-- [x] Scaffold VS Code extension under `vscode/` with name `vscode-react-native-storybook`.
+- [x] Scaffold VS Code extension under `vscode-extension/` with name `vscode-react-native-storybook`.
 - [x] Implement config discovery for `.rnstorybook` and optional override setting.
 - [x] Load story index via `@storybook/react-native/node` `buildIndex`.
 - [x] Port tree builder from rozenite plugin and expose proper group/component/story structure.

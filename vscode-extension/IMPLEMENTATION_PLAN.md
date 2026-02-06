@@ -22,7 +22,7 @@
 - Web Storybook VS Code extension (external reference): `https://github.com/joshbolduc/vscode-story-explorer`
 
 ## Architecture
-- **Extension root**: `/Users/danielwilliams/Developer/storybook/react-native-storybook-tools/vscode`
+- **Extension root**: `/Users/danielwilliams/Developer/storybook/react-native-storybook-tools/vscode-extension`
 - **Tree provider**: Builds a nested tree from `StoryIndex.entries` using the rozenite algorithm.
 - **Index source**: `buildIndex({ configPath })` from `@storybook/react-native/node` (local file system parsing).
 - **WebSocket client**: Node `ws` client to connect to `ws://<host>:<port>`.
@@ -40,7 +40,7 @@
 
 ## Implementation Steps
 1. **Scaffold extension**
-   - Initialize VS Code extension structure under `/Users/danielwilliams/Developer/storybook/react-native-storybook-tools/vscode`.
+   - Initialize VS Code extension structure under `/Users/danielwilliams/Developer/storybook/react-native-storybook-tools/vscode-extension`.
    - Ensure no nested git artifacts are copied.
    - Add `package.json`, `tsconfig.json`, and basic activation events.
 
