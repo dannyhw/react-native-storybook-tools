@@ -8,4 +8,4 @@
 - [x] Implement WebSocket client for RN Storybook channel (connect, disconnect, events).
 - [x] Wire commands and view contributions in `package.json`.
 - [x] Add REST fallback to fetch `/index.json` when WS unavailable.
-- [ ] Validate with manual run and update docs/README.
+- [x] Validate with manual run and update docs/README.
