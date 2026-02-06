@@ -140,7 +140,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "bunx @vscode/vsce package",
+    "package": "bunx @vscode/vsce package --no-dependencies",
     "publish": "bunx @vscode/vsce publish"
   },
   "devDependencies": {
