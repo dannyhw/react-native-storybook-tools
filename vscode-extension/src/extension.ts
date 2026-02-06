@@ -105,43 +105,6 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  const moreActionsCommand = vscode.commands.registerCommand(
-    'vscodeReactNativeStorybook.moreActions',
-    async () => {
-      const selected = await vscode.window.showQuickPick(
-        [
-          {
-            label: 'Refresh Stories',
-            action: 'refresh' as const,
-          },
-          {
-            label: 'Connect',
-            action: 'connect' as const,
-          },
-          {
-            label: 'Disconnect',
-            action: 'disconnect' as const,
-          },
-        ],
-        {
-          title: 'Storybook Actions',
-          placeHolder: 'Choose an action',
-        }
-      );
-
-      if (!selected) return;
-      if (selected.action === 'refresh') {
-        await refreshIndex();
-        return;
-      }
-      if (selected.action === 'connect') {
-        wsClient.connect();
-        return;
-      }
-      wsClient.disconnect();
-    }
-  );
-
   const openStoryFileCommand = vscode.commands.registerCommand(
     'vscodeReactNativeStorybook.openStoryFile',
     async (node?: ViewNode | string) => {
@@ -191,7 +154,6 @@ export async function activate(context: vscode.ExtensionContext) {
     connectCommand,
     disconnectCommand,
     selectStoryCommand,
-    moreActionsCommand,
     openStoryFileCommand,
     configListener
   );
