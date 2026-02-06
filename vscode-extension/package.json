@@ -4,6 +4,7 @@
   "description": "Browse and control React Native Storybook stories from VS Code.",
   "publisher": "storybook",
   "version": "0.0.1",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.106.1"
   },
