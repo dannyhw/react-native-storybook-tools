@@ -52,11 +52,20 @@
         "label": "..."
       }
     ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "storybook",
+          "title": "Storybook",
+          "icon": "resources/storybook-activity.svg"
+        }
+      ]
+    },
     "views": {
-      "explorer": [
+      "storybook": [
         {
           "id": "storybookStories",
-          "name": "Storybook"
+          "name": "Stories"
         }
       ]
     },
