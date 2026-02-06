@@ -4,11 +4,8 @@ export function buildTree(entries: StoryEntry[]): TreeNode[] {
   const root: TreeNode[] = [];
   const nodeMap = new Map<string, TreeNode>();
 
-  const sortedEntries = [...entries].sort((a, b) =>
-    `${a.title}/${a.name}`.localeCompare(`${b.title}/${b.name}`)
-  );
-
-  for (const entry of sortedEntries) {
+  // Preserve Storybook index ordering exactly as received.
+  for (const entry of entries) {
     if (entry.type !== 'story') continue;
 
     const pathParts = entry.title.split('/');
