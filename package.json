@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "workspaces": [
     "rozenite-plugin",
-    "example"
+    "example",
+    "vscode-extension"
   ],
   "scripts": {
     "repo:fix": "sherif --fix -r unsync-similar-dependencies",

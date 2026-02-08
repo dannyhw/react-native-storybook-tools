@@ -1,0 +1,154 @@
+{
+  "name": "vscode-react-native-storybook",
+  "displayName": "React Native Storybook",
+  "description": "Browse and control React Native Storybook stories from VS Code.",
+  "publisher": "dannyhw",
+  "version": "0.0.3",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dannyhw/react-native-storybook-tools.git"
+  },
+  "homepage": "https://github.com/dannyhw/react-native-storybook-tools",
+  "bugs": {
+    "url": "https://github.com/dannyhw/react-native-storybook-tools/issues"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:storybookStories",
+    "onCommand:vscodeReactNativeStorybook.refreshIndex",
+    "onCommand:vscodeReactNativeStorybook.connect",
+    "onCommand:vscodeReactNativeStorybook.disconnect",
+    "onCommand:vscodeReactNativeStorybook.openStoryFile"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscodeReactNativeStorybook.refreshIndex",
+        "title": "Storybook: Refresh Stories"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.connect",
+        "title": "Storybook: Connect"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.disconnect",
+        "title": "Storybook: Disconnect"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.selectStory",
+        "title": "Storybook: Select Story"
+      },
+      {
+        "command": "vscodeReactNativeStorybook.openStoryFile",
+        "title": "Storybook: Open Story File",
+        "icon": {
+          "light": "resources/open-file-light.svg",
+          "dark": "resources/open-file-dark.svg"
+        }
+      }
+    ],
+    "submenus": [
+      {
+        "id": "vscodeReactNativeStorybook.actionsMenu",
+        "label": "..."
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "storybook",
+          "title": "Storybook",
+          "icon": "resources/storybook-activity.svg"
+        }
+      ]
+    },
+    "views": {
+      "storybook": [
+        {
+          "id": "storybookStories",
+          "name": "Stories"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "submenu": "vscodeReactNativeStorybook.actionsMenu",
+          "when": "view == storybookStories",
+          "group": "navigation"
+        }
+      ],
+      "vscodeReactNativeStorybook.actionsMenu": [
+        {
+          "command": "vscodeReactNativeStorybook.refreshIndex",
+          "when": "view == storybookStories",
+          "group": "1_main"
+        },
+        {
+          "command": "vscodeReactNativeStorybook.connect",
+          "when": "view == storybookStories",
+          "group": "1_main"
+        },
+        {
+          "command": "vscodeReactNativeStorybook.disconnect",
+          "when": "view == storybookStories",
+          "group": "1_main"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vscodeReactNativeStorybook.openStoryFile",
+          "when": "view == storybookStories && viewItem == story",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "React Native Storybook",
+      "properties": {
+        "reactNativeStorybook.host": {
+          "type": "string",
+          "default": "localhost",
+          "description": "Host for the Storybook WebSocket/REST server."
+        },
+        "reactNativeStorybook.port": {
+          "type": "number",
+          "default": 7007,
+          "description": "Port for the Storybook WebSocket/REST server."
+        },
+        "reactNativeStorybook.configPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional path to .rnstorybook directory (absolute or workspace-relative)."
+        },
+        "reactNativeStorybook.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-connect to Storybook WebSocket on activation."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "bunx @vscode/vsce package --no-dependencies",
+    "publish": "bunx @vscode/vsce publish --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "@types/vscode": "^1.105.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@storybook/react-native": "^10.2.1"
+  }
+}
