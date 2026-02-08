@@ -1,7 +1,8 @@
 {
   "name": "vscode-react-native-storybook",
-  "displayName": "React Native Storybook",
+  "displayName": "React Native Storybook Navigator",
   "description": "Browse and control React Native Storybook stories from VS Code.",
+  "license": "MIT",
   "publisher": "dannyhw",
   "version": "0.0.3",
   "icon": "icon.png",
