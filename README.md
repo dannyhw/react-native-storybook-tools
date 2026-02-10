@@ -7,11 +7,11 @@ A monorepo of developer tools for [React Native Storybook](https://github.com/st
 - openvsx: https://open-vsx.org/extension/dannyhw/vscode-react-native-storybook
 - vscode: https://marketplace.visualstudio.com/items?itemName=dannyhw.vscode-react-native-storybook
 
-https://github.com/user-attachments/assets/e8c34ade-6cba-47b4-b175-0f7030ac6735
+<video src="https://github.com/user-attachments/assets/49adfbf5-1176-4ba1-9d56-bf8e96faa565"></video>
 
 **Rozenite Plugin**
 
-https://github.com/user-attachments/assets/b2cde9d1-c04d-4089-bc85-a8d0383389e9
+<video src="https://github.com/user-attachments/assets/b2cde9d1-c04d-4089-bc85-a8d0383389e9"></video>
 
 
 ## Packages
